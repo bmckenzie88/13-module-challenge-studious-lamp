@@ -20,7 +20,6 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 
 // get one product
-
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
   router.get("/:id", async (req, res) => {
@@ -44,10 +43,11 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
+      "product_name": "Basketball",
+      "price": 200.00,
+      "stock": 3,
+      "category_id": 7,
+      "tagIds": [1, 2, 3, 4]
     }
   */
   Product.create(req.body)
@@ -60,6 +60,7 @@ router.post('/', (req, res) => {
             tag_id,
           };
         });
+        // [{product_id:8, tag_id:1}]
         return ProductTag.bulkCreate(productTagIdArr);
       }
       // if no product tags, just respond
