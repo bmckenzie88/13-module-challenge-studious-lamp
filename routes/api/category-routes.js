@@ -82,7 +82,7 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((deletedCategory) => {
+    .then(() => {
       res.json({message:'category deleted!'});
     })
     .catch((err) => res.json(err));
